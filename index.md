@@ -230,7 +230,7 @@ date: 2026-05-29
 # The Distillation "Heist" Is Quietly Powering American AI
 
 <figure class="hero-figure">
-  <img src="images/hero.png" alt="Illustration of a capybara in an 'Open Weights' cap and a suited bald eagle meeting on a bridge labeled HANGZHOU, CHINA, exchanging crates marked OPEN WEIGHTS and COMPETITION. To the right, an American AI infrastructure scaffold supports STARTUP PRODUCTS, US CONSUMER BENEFITS, and COMPETITION boxes. Whales and ships with cursor sails move between Chinese and American skylines while a small lobster in a suit takes notes." />
+  <img src="images/hero.jpg" alt="Illustration of a capybara in an 'Open Weights' cap and a suited bald eagle meeting on a bridge labeled HANGZHOU, CHINA, exchanging crates marked OPEN WEIGHTS and COMPETITION. To the right, an American AI infrastructure scaffold supports STARTUP PRODUCTS, US CONSUMER BENEFITS, and COMPETITION boxes. Whales and ships with cursor sails move between Chinese and American skylines while a small lobster in a suit takes notes." loading="eager" decoding="async" />
   <figcaption>Open weights cross the bridge from Hangzhou and get turned into American startup products, infrastructure revenue, and consumer competition. <em>(Illustration generated with Gemini.)</em></figcaption>
 </figure>
 
