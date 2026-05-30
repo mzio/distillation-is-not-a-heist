@@ -8,14 +8,39 @@ date: 2026-05-29
   position: relative;
   display: inline;
   cursor: help;
-  text-decoration: underline dotted rgba(74, 126, 196, 0.55);
-  text-decoration-thickness: 1px;
+  color: #1d4ed8;
+  text-decoration: underline dotted rgba(29, 78, 216, 0.55);
+  text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
-  transition: text-decoration-color 0.18s ease;
+  background-color: rgba(29, 78, 216, 0.05);
+  padding: 1px 3px;
+  margin: 0 -1px;
+  border-radius: 3px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-color 0.18s ease,
+              color 0.18s ease,
+              text-decoration-color 0.18s ease;
+}
+.cite::after {
+  content: "ⓘ";
+  font-size: 0.7em;
+  vertical-align: super;
+  margin-left: 2px;
+  opacity: 0.65;
+  font-style: normal;
+  font-weight: 500;
+  transition: opacity 0.18s ease;
 }
 .cite:hover,
 .cite:focus-within {
-  text-decoration-color: rgba(74, 126, 196, 1);
+  color: #1e40af;
+  background-color: rgba(29, 78, 216, 0.12);
+  text-decoration-color: #1d4ed8;
+}
+.cite:hover::after,
+.cite:focus-within::after {
+  opacity: 1;
 }
 .cite > .src {
   visibility: hidden;
