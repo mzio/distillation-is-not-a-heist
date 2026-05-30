@@ -6,65 +6,122 @@ date: 2026-05-29
 <style>
 .cite {
   position: relative;
-  border-bottom: 1px dotted #4a7ec4;
-  cursor: help;
   display: inline;
+  cursor: help;
+  text-decoration: underline dotted rgba(74, 126, 196, 0.55);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.18s ease;
+}
+.cite:hover,
+.cite:focus-within {
+  text-decoration-color: rgba(74, 126, 196, 1);
 }
 .cite > .src {
   visibility: hidden;
   opacity: 0;
+  transform: translateX(-50%) translateY(6px);
   position: absolute;
-  bottom: calc(100% + 10px);
+  bottom: calc(100% + 12px);
   left: 50%;
-  transform: translateX(-50%);
-  background: #1a1a1a;
-  color: #f0f0f0;
-  padding: 10px 14px;
-  border-radius: 8px;
+  width: max-content;
+  max-width: 340px;
+  padding: 14px 16px 12px;
+  z-index: 100;
+  background: linear-gradient(180deg, rgba(23, 31, 46, 0.98), rgba(17, 24, 39, 0.98));
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  color: #e5e7eb;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
   font-size: 0.78em;
   font-weight: 400;
-  line-height: 1.5;
-  white-space: normal;
-  width: max-content;
-  max-width: 320px;
-  z-index: 100;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-  transition: opacity 0.15s ease, visibility 0.15s ease;
-  pointer-events: none;
+  line-height: 1.55;
+  letter-spacing: 0.005em;
   text-align: left;
-  border-bottom: none;
+  white-space: normal;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 10px;
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.32),
+    0 2px 6px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.2s;
+  pointer-events: none;
   cursor: default;
+}
+.cite > .src::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: rgba(148, 163, 184, 0.15);
 }
 .cite > .src::after {
   content: "";
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-1.5px);
   border: 6px solid transparent;
-  border-top-color: #1a1a1a;
+  border-top-color: rgba(17, 24, 39, 0.98);
+}
+.cite > .src strong {
+  display: block;
+  font-size: 0.78em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #93c5fd;
+  margin-bottom: 7px;
 }
 .cite > .src a {
+  display: inline-block;
+  margin-top: 4px;
   color: #7eb6ff;
   text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.cite > .src a::after {
+  content: " ↗";
+  font-size: 0.92em;
+  opacity: 0.65;
+  margin-left: 1px;
 }
 .cite > .src a:hover {
-  text-decoration: underline;
+  color: #bfdbfe;
+  border-bottom-color: rgba(191, 219, 254, 0.5);
 }
 .cite:hover > .src,
 .cite:focus-within > .src,
 .cite > .src:hover {
   visibility: visible;
   opacity: 1;
+  transform: translateX(-50%) translateY(0);
   pointer-events: auto;
 }
 @media (max-width: 640px) {
   .cite > .src {
-    max-width: 260px;
+    max-width: 280px;
     left: 0;
-    transform: none;
+    transform: translateX(0) translateY(6px);
   }
-  .cite > .src::after { left: 20px; transform: none; }
+  .cite:hover > .src,
+  .cite:focus-within > .src,
+  .cite > .src:hover {
+    transform: translateX(0) translateY(0);
+  }
+  .cite > .src::before,
+  .cite > .src::after {
+    left: 22px;
+  }
+  .cite > .src::before { transform: none; }
+  .cite > .src::after { transform: translateY(-1.5px); }
 }
 </style>
 
