@@ -148,6 +148,61 @@ date: 2026-05-29
   .cite > .src::before { transform: none; }
   .cite > .src::after { transform: translateY(-1.5px); }
 }
+
+.appendix {
+  margin-top: 64px;
+  padding: 32px 34px 28px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid #94a3b8;
+  border-radius: 6px;
+  color: #334155;
+}
+.appendix > h2 {
+  margin-top: 0;
+  margin-bottom: 6px;
+  font-size: 1.15em;
+  font-weight: 600;
+  color: #1e293b;
+  border-bottom: none;
+  padding-bottom: 0;
+  letter-spacing: -0.005em;
+}
+.appendix > h2 + p {
+  font-style: italic;
+  color: #64748b;
+  margin-top: 0;
+  margin-bottom: 28px;
+  font-size: 0.94em;
+}
+.appendix h3 {
+  font-size: 1em;
+  font-weight: 600;
+  color: #0f172a;
+  margin-top: 28px;
+  margin-bottom: 10px;
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+}
+.appendix h3:first-of-type,
+.appendix > h2 + p + h3 {
+  margin-top: 0;
+}
+.appendix p {
+  font-size: 0.95em;
+  line-height: 1.65;
+  color: #334155;
+}
+.appendix p + p { margin-top: 14px; }
+.appendix .appendix-label {
+  display: block;
+  font-size: 0.7em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
 </style>
 
 # The Distillation "Heist" Is Quietly Powering American AI
@@ -192,21 +247,7 @@ Extending an FDPR-style regime to *models* would compound this. American frontie
 
 If the concern is American AI leadership, the lever is not restricting how Americans can use foreign open-weight models. It is what the piece correctly identifies as a secondary recommendation and should have made primary: funding and incentivizing American firms to release competitive open-weight models. Gemma 4 is a step. Llama has lost ground that needs to be recovered. The actual policy is *more American open weights, not fewer Chinese ones*.
 
-## 4. Supporting claims that don't hold up
-
-Beyond the main argument, the piece leans on a chain of supporting claims that don't carry the weight they are asked to.
-
-**"OpenClaw shows that users around the world want models that run on their own devices."** Even OpenClaw itself does not show this. <span class="cite">OpenClaw's own documentation recommends Claude Sonnet 4.6 via the Anthropic API as the primary model, with a cloud GPT model as the recommended fallback<span class="src"><strong>OpenClaw recommended default</strong><br>OpenClaw's official model-providers documentation recommends Claude Sonnet 4.6 via Anthropic as the primary, with cloud GPT (e.g., gpt-4o or gpt-5.4) configured as the fallback. Local Ollama / vLLM / SGLang are shipped as bundled provider plugins but are not the default configuration.<br><a href="https://docs.openclaw.ai/concepts/model-providers" target="_blank" rel="noopener">OpenClaw docs: model providers</a></span></span>. Local Ollama, vLLM, and SGLang are shipped as bundled provider plugins, but they are not the out-of-the-box default. <span class="cite">Community discussion around OpenClaw deployments converges on a hybrid pattern: Claude for the main conversational loop and tool-orchestration, local Ollama for bounded sub-agent tasks and routine cron jobs<span class="src"><strong>OpenClaw user consensus: hybrid, not local-first</strong><br>Reported community consensus around OpenClaw is to use cloud Claude for the main loop and local Ollama for sub-agents or routine background tasks. Teams that try "full local everything" reportedly downgrade to hybrid within weeks because the main loop is too slow and tool-call reliability collapses without a frontier model.<br><a href="https://clawmage.ai/blog/openclaw-ollama-reddit/" target="_blank" rel="noopener">Summary of OpenClaw Ollama discussions</a></span></span>. Teams that try "full local everything" reportedly come back to hybrid within weeks, because the main loop is too slow and tool-call reliability collapses without a frontier model behind it. So OpenClaw being the fastest-growing local-capable agent framework on GitHub is not evidence that users want on-device inference. It is evidence that users want a framework flexible enough to *route between* local and cloud — and in the routing, the recommended primary path is overwhelmingly cloud.
-
-The same pattern recurs across other local-capable agent frameworks. <span class="cite">OpenHands' own documentation names Claude 3 and GPT-4 as the recommended partners; developer reports describe local-only setups (Llama 3.1, codegemma, deepseek-coder via Ollama) as producing "very disappointing results"<span class="src"><strong>OpenHands: cloud-default in practice</strong><br>OpenHands explicitly recommends Claude 3 and GPT-4 as the best-performing partners. Practitioner write-ups describe local Ollama setups as failing on real agentic tasks. The framework supports local models; users route to cloud APIs in practice.<br><a href="https://medium.com/@mchechulin/real-world-experience-with-development-using-ai-and-openhands-61d267bc6cd2" target="_blank" rel="noopener">Developer report on OpenHands + local models</a></span></span>. <span class="cite">Cline — one of the most-installed agent extensions for VS Code — treats Claude Sonnet as the default for agentic work and positions local routing as a cost-optimization fallback, not a primary path<span class="src"><strong>Cline: cloud-default, local-as-fallback</strong><br>Cline supports Claude, GPT, DeepSeek, Gemini, and local Ollama. Claude 3.5 / 4 Sonnet is widely described as the recommended default for agentic work; local routing is positioned as a way to save money, not as the modal user experience.<br><a href="https://www.morphllm.com/comparisons/cline-vs-continue" target="_blank" rel="noopener">Cline vs Continue comparison</a></span></span>. Open Interpreter is model-agnostic in principle; in practice the recommended path is GPT-4o or Claude, with local Ollama positioned for "routine scripting where response speed is not critical." The architectural pattern across these frameworks is "supports local." The revealed usage pattern is "routes to cloud." The piece treats demand for the *framework* as demand for *on-device inference*, and the data — including OpenClaw's own — does not support the conflation.
-
-**"OpenClaw's malicious skills show the danger of open-weight models that won't refuse instructions."** This is a category error. The OpenClaw "skills" the piece describes — the 340+ malicious extensions, the top-ranked community skill that turned out to be malware — are user-submitted prompts and code in a community marketplace. They have nothing to do with model weights, Chinese or otherwise. A malicious skill executed by an agent harness with insufficient sandboxing is just as dangerous when the underlying model is Claude, GPT-4, or Llama as when it is DeepSeek. The relevant safety problem is *agent runtime sandboxing and marketplace moderation* — the responsibility of whoever built and operates OpenClaw — not the country of origin of the weights underneath. The piece conflates three distinct layers (model weights, agent runtime, community marketplace) and attributes the failure mode of the third to the nationality of the first.
-
-**"Safety filtering doesn't transfer through distillation, therefore distilled Chinese models are uniquely dangerous."** The first half is correct and uncontroversial. The second half does not follow from it. Distillation is the *general* technique by which capability transfers and post-training safety does not — the same is true when American labs distill their own production models for cheaper deployment, when academic researchers distill open weights for evaluation, and when any developer fine-tunes a model in a way that disturbs its post-training scaffolding. The remedy in every case is the same: post-training safety work by the downstream party. That is a service American post-training firms already sell. There is no version of this argument that picks out *Chinese* distilled models specifically.
-
-**"The Iranian strikes on AWS infrastructure show why we need to move to local."** The strikes happened, datacenters are physical targets, and resilience matters. None of this implies anything about which country's open weights to run. The piece moves from "datacenters are vulnerable" to "local is good for resilience" to "therefore the (currently mostly Chinese) open-weight ecosystem is the answer" — and the only step that is actually argued is the first one. Compute resilience is solved by diversifying *topology* (multiple regions, multiple providers, on-prem fallback). It is not solved by, and does not bear on, the choice between Qwen and Llama.
-
-## 5. What a serious response would actually look like
+## What a serious response would actually look like
 
 None of the above means unauthorized extraction is harmless. If Chinese labs are running fraudulent accounts at scale to evade API terms of service and systematically harvest the outputs of frontier American models, that conduct should be investigated and punished. Frontier labs should harden their APIs against extraction, share abuse indicators across firms, watermark outputs where it helps, and pursue civil enforcement where the evidence supports it. The U.S. government can help by treating documented, state-linked extraction campaigns as commercial misconduct backed by enforceable instruments — not as a vague atmospheric threat that justifies broad restrictions on the open-weight ecosystem downstream of those campaigns.
 
@@ -235,3 +276,30 @@ The answer to Chinese open-weight competition is not fewer open weights. It is a
 <small><em>This piece was ghost-written by Claude (Opus 4.7 (1M context)) via prompt-to-prose instructions by the author. The arguments are the author's own, applying that good old liberal-arts education of actually thinking about an article's points, and engaging both as an example of discourse to his lab and out of disagreement with the incautious framing of the original piece. The author would encourage others to do the same. Any errors of fact or judgment are jointly owned.</em></small>
 
 <small><strong>Disclosure.</strong> <em>The author has previously consulted at Together AI, one of the neo-clouds mentioned by name in this piece, and has helped start an American neo-lab.</em></small>
+
+
+<div class="appendix" markdown="1">
+
+## <span class="appendix-label">Appendix</span>Supporting claims that don't hold up
+
+Beyond the main argument, the [original piece](https://www.foreignaffairs.com/china/chinas-ai-heist) leans on a chain of supporting claims that don't carry their weight. A few of them, addressed in turn.
+
+### "OpenClaw shows that users around the world want models that run on their own devices."
+
+Even OpenClaw itself does not show this. <span class="cite">OpenClaw's own documentation recommends Claude Sonnet 4.6 via the Anthropic API as the primary model, with a cloud GPT model as the recommended fallback<span class="src"><strong>OpenClaw recommended default</strong><br>OpenClaw's official model-providers documentation recommends Claude Sonnet 4.6 via Anthropic as the primary, with cloud GPT (e.g., gpt-4o or gpt-5.4) configured as the fallback. Local Ollama / vLLM / SGLang are shipped as bundled provider plugins but are not the default configuration.<br><a href="https://docs.openclaw.ai/concepts/model-providers" target="_blank" rel="noopener">OpenClaw docs: model providers</a></span></span>. Local Ollama, vLLM, and SGLang are shipped as bundled provider plugins, but they are not the out-of-the-box default. <span class="cite">Community discussion around OpenClaw deployments converges on a hybrid pattern: Claude for the main conversational loop and tool-orchestration, local Ollama for bounded sub-agent tasks and routine cron jobs<span class="src"><strong>OpenClaw user consensus: hybrid, not local-first</strong><br>Reported community consensus around OpenClaw is to use cloud Claude for the main loop and local Ollama for sub-agents or routine background tasks. Teams that try "full local everything" reportedly downgrade to hybrid within weeks because the main loop is too slow and tool-call reliability collapses without a frontier model.<br><a href="https://clawmage.ai/blog/openclaw-ollama-reddit/" target="_blank" rel="noopener">Summary of OpenClaw Ollama discussions</a></span></span>. Teams that try "full local everything" reportedly come back to hybrid within weeks, because the main loop is too slow and tool-call reliability collapses without a frontier model behind it. So OpenClaw being the fastest-growing local-capable agent framework on GitHub is not evidence that users want on-device inference. It is evidence that users want a framework flexible enough to *route between* local and cloud — and in the routing, the recommended primary path is overwhelmingly cloud.
+
+The same pattern recurs across other local-capable agent frameworks. <span class="cite">OpenHands' own documentation names Claude 3 and GPT-4 as the recommended partners; developer reports describe local-only setups (Llama 3.1, codegemma, deepseek-coder via Ollama) as producing "very disappointing results"<span class="src"><strong>OpenHands: cloud-default in practice</strong><br>OpenHands explicitly recommends Claude 3 and GPT-4 as the best-performing partners. Practitioner write-ups describe local Ollama setups as failing on real agentic tasks. The framework supports local models; users route to cloud APIs in practice.<br><a href="https://medium.com/@mchechulin/real-world-experience-with-development-using-ai-and-openhands-61d267bc6cd2" target="_blank" rel="noopener">Developer report on OpenHands + local models</a></span></span>. <span class="cite">Cline — one of the most-installed agent extensions for VS Code — treats Claude Sonnet as the default for agentic work and positions local routing as a cost-optimization fallback, not a primary path<span class="src"><strong>Cline: cloud-default, local-as-fallback</strong><br>Cline supports Claude, GPT, DeepSeek, Gemini, and local Ollama. Claude 3.5 / 4 Sonnet is widely described as the recommended default for agentic work; local routing is positioned as a way to save money, not as the modal user experience.<br><a href="https://www.morphllm.com/comparisons/cline-vs-continue" target="_blank" rel="noopener">Cline vs Continue comparison</a></span></span>. Open Interpreter is model-agnostic in principle; in practice the recommended path is GPT-4o or Claude, with local Ollama positioned for "routine scripting where response speed is not critical." The architectural pattern across these frameworks is "supports local." The revealed usage pattern is "routes to cloud." The piece treats demand for the *framework* as demand for *on-device inference*, and the data — including OpenClaw's own — does not support the conflation.
+
+### "OpenClaw's malicious skills show the danger of open-weight models that won't refuse instructions."
+
+This is a category error. The OpenClaw "skills" the piece describes — the 340+ malicious extensions, the top-ranked community skill that turned out to be malware — are user-submitted prompts and code in a community marketplace. They have nothing to do with model weights, Chinese or otherwise. A malicious skill executed by an agent harness with insufficient sandboxing is just as dangerous when the underlying model is Claude, GPT-4, or Llama as when it is DeepSeek. The relevant safety problem is *agent runtime sandboxing and marketplace moderation* — the responsibility of whoever built and operates OpenClaw — not the country of origin of the weights underneath. The piece conflates three distinct layers (model weights, agent runtime, community marketplace) and attributes the failure mode of the third to the nationality of the first.
+
+### "Safety filtering doesn't transfer through distillation, therefore distilled Chinese models are uniquely dangerous."
+
+The first half is correct and uncontroversial. The second half does not follow from it. Distillation is the *general* technique by which capability transfers and post-training safety does not — the same is true when American labs distill their own production models for cheaper deployment, when academic researchers distill open weights for evaluation, and when any developer fine-tunes a model in a way that disturbs its post-training scaffolding. The remedy in every case is the same: post-training safety work by the downstream party. That is a service American post-training firms already sell. There is no version of this argument that picks out *Chinese* distilled models specifically.
+
+### "The Iranian strikes on AWS infrastructure show why we need to move to local."
+
+The strikes happened, datacenters are physical targets, and resilience matters. None of this implies anything about which country's open weights to run. The piece moves from "datacenters are vulnerable" to "local is good for resilience" to "therefore the (currently mostly Chinese) open-weight ecosystem is the answer" — and the only step that is actually argued is the first one. Compute resilience is solved by diversifying *topology* (multiple regions, multiple providers, on-prem fallback). It is not solved by, and does not bear on, the choice between Qwen and Llama.
+
+</div>
