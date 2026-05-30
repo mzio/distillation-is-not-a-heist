@@ -181,11 +181,29 @@ The same pattern recurs across other local-capable agent frameworks. <span class
 
 **"The Iranian strikes on AWS infrastructure show why we need to move to local."** The strikes happened, datacenters are physical targets, and resilience matters. None of this implies anything about which country's open weights to run. The piece moves from "datacenters are vulnerable" to "local is good for resilience" to "therefore the (currently mostly Chinese) open-weight ecosystem is the answer" — and the only step that is actually argued is the first one. Compute resilience is solved by diversifying *topology* (multiple regions, multiple providers, on-prem fallback). It is not solved by, and does not bear on, the choice between Qwen and Llama.
 
+## 5. What a serious response would actually look like
+
+None of the above means unauthorized extraction is harmless. If Chinese labs are running fraudulent accounts at scale to evade API terms of service and systematically harvest the outputs of frontier American models, that conduct should be investigated and punished. Frontier labs should harden their APIs against extraction, share abuse indicators across firms, watermark outputs where it helps, and pursue civil enforcement where the evidence supports it. The U.S. government can help by treating documented, state-linked extraction campaigns as commercial misconduct backed by enforceable instruments — not as a vague atmospheric threat that justifies broad restrictions on the open-weight ecosystem downstream of those campaigns.
+
+But that is a very different thing from treating every Chinese-origin open-weight model as contraband, or every American company that builds on one as a vector of geopolitical dependence. The policy target should be the conduct, not the artifact. Washington should be asking who extracted what, from whom, under what terms, at what scale, and with what evidence. Without that discipline, "anti-distillation" policy becomes a general-purpose instrument for restricting open models — even when the downstream value is being captured by American clouds, American chips, American post-training firms, and American application companies.
+
+A serious policy would have three parts:
+
+1. **Enforce against unauthorized extraction directly.** Treat the documented conduct — fraudulent accounts, organized ToS violations at industrial scale — as commercial misconduct: civil suits, account-level countermeasures, cross-lab abuse-indicator sharing, and criminal referrals where appropriate. Penalize the *action*, not the artifact that resulted from it.
+
+2. **Create lawful, audited distillation pathways for U.S. and allied companies.** American startups today have two paths to a frontier-competitive in-house model: raise $100M+ to train from scratch, or build on a foreign open-weight release. There should be a third — frontier labs licensing limited, output-based training to vetted U.S. and allied companies under safety review, provenance logging, usage caps, and revenue sharing. That addresses the piece's "level playing field" concern head-on, without breaking the open-weight ecosystem.
+
+3. **Make competitive American open weights an industrial-policy priority.** Compute grants, public-benchmark prizes, procurement commitments, and university-industry consortia, all aimed at the concrete goal of making U.S. and allied open models good enough that developers choose them voluntarily. This is the lever the Foreign Affairs piece acknowledges and then de-emphasizes. It is the lever that actually works, because it shifts defaults rather than restricting them.
+
+Finally, regulate deployment risks as deployment risks. If a model produces insecure code, contains political refusal artifacts, fails cybersecurity evaluations, or is unsafe to wrap in an autonomous local agent, that should matter — regardless of whether the weights came from Beijing, Menlo Park, Paris, or Mountain View. The serious policy question is not the nationality of the first pretraining run. It is where the model is hosted, who controls the post-training, which infrastructure captures the revenue, what safety evaluations the deployment passes, and how easily users can switch away. Each of those is a real policy lever. None of them are activated by an FDPR designation on a foreign model.
+
 ## A closing note
+
+This is the difference between policy and policy theater. A serious response to extraction would punish the extraction, expand lawful American capability transfer, and fund American open-weight competition until the developer default shifts on its own. A performative response would ban the very open-weight ecosystem that is currently letting American firms compete with the frontier incumbents — and call it a national security measure.
 
 "The distribution layer matters" and "the United States is losing a heist" are different claims, and the piece slides between them. The first is correct and important. The second is a narrative dressed in policy clothing. The American AI ecosystem is, on the actual numbers, winning the distribution game — on the strength of American chips, American clouds, American agentic tooling, and American post-training services, all of it amplified, not threatened, by the open-weight Chinese models the piece wants to restrict.
 
-Policy should match the deployment topology, not the talking points.
+The answer to Chinese open-weight competition is not fewer open weights. It is a stronger American open ecosystem, and the conduct-not-artifact discipline to tell the two problems apart.
 
 ---
 
