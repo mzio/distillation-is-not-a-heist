@@ -302,7 +302,7 @@ The answer to Chinese open-weight competition is not fewer open weights. It is a
 
 ---
 
-<small><em>The main parts of this piece were ghost-written by Claude (Opus 4.7 (1M context)) via prompt-to-prose instructions by the author, with some quips and evidence thrown in by the model, and some re-writing done by the author. The arguments are the author's own, applying that good old liberal-arts education of actually thinking about an article's points, and engaging both as an example of discourse to his lab and out of disagreement with the incautious framing of the original piece. The author would encourage others to do the same. Any errors of fact or judgment are jointly owned.</em></small>
+<small><em>Parts of this piece were ghost-written by Claude (Opus 4.7 (1M context)) via prompt-to-prose instructions by the author, with some quips and evidence thrown in by the model, and some re-writing done by the author. The arguments are the author's own, applying that good old liberal-arts education of actually thinking about an article's points, and engaging with the parts he disagrees with. This is all in the spirit of good discourse, and the author would encourage others to do the same. Any errors of fact or judgment are jointly owned.</em></small>
 
 <small><strong>Disclosure.</strong> <em>The author has previously consulted at Together AI, one of the companies serving open-source models mentioned in this piece, and has helped start an American neo-lab.</em></small>
 
